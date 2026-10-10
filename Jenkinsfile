@@ -22,13 +22,13 @@ pipeline {
         stage('Compile') {
             steps {
                 echo '==> Compiling main sources'
-                sh 'mvn clean compile -B'
+                bat 'mvn clean compile -B'
             }
         }
         stage('Test') {
             steps {
                 echo '==> Running unit tests (JUnit 5 via maven-surefire-plugin)'
-                sh 'mvn test -B'
+                bat 'mvn test -B'
             }
             post {
                 always {
@@ -45,7 +45,7 @@ pipeline {
         stage('Package') {
             steps {
                 echo '==> Packaging the application (skip tests — already run)'
-                sh 'mvn package -B -DskipTests'
+                bat 'mvn package -B -DskipTests'
             }
             post {
                 success {
